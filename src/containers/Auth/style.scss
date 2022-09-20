@@ -1,0 +1,76 @@
+@import "../../styles/common.scss";
+
+.container-login{
+    height: 100vh;
+    background-image: url("../../assets/images/house.jpg");
+    background-color: #cccccc;
+    background-position: center; 
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.background-color{
+    height: 100vh;
+    background-color: rgba(135,141,225,0.85);
+}
+
+.logo-container{
+    margin-top: $MARGIN_TOP;
+    text-align: center;
+}
+.logo-img{
+    margin-top: $VERTICAL_SPACE_SIZE;
+    width: 70px;
+    
+}
+.logo-text{
+    color: $CORLOR_WHITE;
+    font-size: $FONT_SIZE_LARGE;
+    font-weight: "bold";
+    text-align: "center";
+    margin-bottom: $HORIZONTAL_SPACE_SIZE_LARGE;
+}
+
+.button-text{
+    color: $COLOR_BLACK;
+    font-size: $FONT_SIZE_DEFAULT;
+    font-weight: 500;
+    margin-top: 15px;
+    width: 100%;
+}
+
+.button-icon{
+    color:$COLOR_BLACK;
+}
+
+@mixin text-link-style($color, $fontsize) {
+    color: $color;
+    font-size: $fontsize;
+}
+
+.link-text-top{
+    @include text-link-style($CORLOR_WHITE,$FONT_SIZE_DEFAULT);
+    text-transform:none;
+    margin-top: 2vh;
+    margin-bottom: 0px;
+}
+.link-text-right{
+    @include text-link-style($CORLOR_WHITE,$FONT_SIZE_DEFAULT);
+    text-transform:none;
+    text-decoration: none;
+}
+.link-text-right:hover{
+    color: $COLOR_AMBER;
+}
+.link-text-bottom{
+    @include text-link-style($CORLOR_WHITE,$FONT_SIZE_DEFAULT);
+    text-transform:uppercase;
+    text-decoration: none;
+    font-weight: bold;
+    margin-top: 0;
+}
+
+
+.link-text-bottom:hover{
+        color: $COLOR_AMBER;
+}
