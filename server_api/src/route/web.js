@@ -13,6 +13,7 @@ const initWebRoutes = (app) => {
     router.get("/api/get-user", homeController.displayGetUser)
     router.get("/api/edit-user", homeController.getEditUser)
     router.get("/api/delete-user", homeController.deleteUser)
+    router.get("/api/user/get-all", userController.getAllUser)
 
     //post
     router.post("/api/auth/login", userController.handleLogIn)

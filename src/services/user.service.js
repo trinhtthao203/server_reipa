@@ -3,7 +3,6 @@ import BaseService from "./base.service"
 import axios from "../axios"
 
 class UserService extends BaseService {
-
     handleLogIn = async (phonenumber, password) => {
         return axios.post(Constants.ApiPath.LOGIN,
             {
