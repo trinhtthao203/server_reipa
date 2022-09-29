@@ -17,6 +17,7 @@ const initWebRoutes = (app) => {
 
     //post
     router.post("/api/auth/login", userController.handleLogIn)
+    router.post("/api/auth/register", userController.handleRegister)
     router.post("/api/post-user", homeController.postUser)
     router.post("/api/put-user-info", homeController.putUserInfo)
 

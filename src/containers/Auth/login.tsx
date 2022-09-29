@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import { push } from "connected-react-router";
 import * as actions from "../../store/actions";
 import "./style.scss";
-import { FormattedMessage } from "react-intl";
 import Constants from "../../constants/index";
 import { Container, FormHelperText, Button, Grid, TextField, FormControl, InputAdornment, IconButton, FilledInput, InputLabel, OutlinedInput } from "@mui/material";
 import { Visibility, VisibilityOff, ArrowForwardIos, TrendingUp } from "@mui/icons-material";
@@ -98,7 +97,8 @@ function Login() {
 
         if (errorPassword.error === false && errorPhoneNumber.error === false) {
             try {
-                await userService.handleLogIn(userInfo.phonenumber, userInfo.password);
+                const result = await userService.handleLogIn(userInfo.phonenumber, userInfo.password);
+                console.log(result);
             } catch (e) {
                 console.log(e);
             }

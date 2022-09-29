@@ -5,10 +5,10 @@ import express from "express";
 import connectDB from './config/connectDB';
 import cors from 'cors';
 
-const app = express();
-app.use(cors({ origin: true }))
-
 require("dotenv").config();
+
+const app = express();
+app.use(cors({ origin: true }));
 
 //config app
 app.use(bodyParser.json());

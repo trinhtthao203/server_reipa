@@ -101,7 +101,7 @@ export default {
     },
 
     Message: {
-        COMMON_ERROR: "Đã có lỗi xảy ra.",
+        COMMON_ERROR: "Đã có lỗi xảy ra. Vui lòng thử lại",
         REQUEST_TIMEOUT: "Hết phiên nhập"
     },
 
@@ -122,12 +122,12 @@ export default {
         CONFIRM_PASSWORD: "Xác nhận mật khẩu",
         SELECT_FROM_LIBRARY: "Chọn ảnh từ thư viện",
 
-        EMAIL_REQUIRED_MESSAGE: "Vui lòng địa chỉ email",
         PASSWORD_REQUIRED_MESSAGE: "Vui lòng nhập mật khẩu",
         NEW_PASSWORD_REQUIRED_MESSAGE: "Vui lòng nhập mật khẩu mới",
         USER_NAME_REQUIRED_MESSAGE: "Vui lòng nhập tài khoản",
         PHONE_NUMBER_REQUIRED_MESSAGE: "Vui lòng nhập số điện thoại",
-        EMAIL_INVALID_MESSAGE: "Địa chỉ email chưa đúng định dạng",
+        PHONE_NUMBER_INCORRECT_MESSAGE: "Số điện thoại không tồn tại",
+        PASSWORD_INCORRECT_MESSAGE: "Mật khẩu không đúng",
         PHONE_NUMBER_INVALID_MESSAGE: "Số điện thoại chưa đúng định dạng",
         PASSWORD_NOT_MATHCHING_MESSAGE: "Mật khẩu xác nhận không trùng khớp",
         CONFIRM_PASSWORD_REQUIRED_MESSAGE: "Vui lòng nhập mật khẩu xác nhận",
@@ -135,7 +135,6 @@ export default {
         HAVE_ACCOUNT: "Đã có tài khoản?",
         UPDATE_PASS_SUCCESS_WITH_OUT_LOGIN: "Cật nhật mật khẩu thành công",
         UPDATE_PASS_SUCCESS: "Cật nhật mật khẩu thành công. Vui lòng đăng nhập với mật khẩu mới",
-        NEW_PASS_IS_SENT: "Mật khẩu mới đã được gửi đến email của bạn. Vui lòng đăng nhập với mật khẩu mới"
     },
 
     Otp: {
@@ -290,5 +289,14 @@ export default {
 
     Invitation: {
         INVITE_SUCCESS: "Mời thành công"
+    },
+
+    Database: {
+        PHONE_NUMBER: "phonenumber",
+        PASSWORD: "password",
+        FULL_NAME: "fullname",
+        ADDRESS: "address"
     }
+
+
 }

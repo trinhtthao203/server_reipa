@@ -22,7 +22,7 @@ const Constants = {
     },
 
     ApiPath: {
-        LOGIN: "api/auth/login",
+        LOGIN: "/auth/login",
 
         // User report
         USER_REPORT_CREATE: "userReport/create",

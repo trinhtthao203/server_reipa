@@ -1,15 +1,18 @@
-import Constants from "../constants"
-import BaseService from "./base.service"
-import axios from "../axios"
+import Constants from "../constants";
+import * as apiProcessor from "./apiProcessor";
 
-class UserService extends BaseService {
+class UserService {
     handleLogIn = async (phonenumber, password) => {
-        return axios.post(Constants.ApiPath.LOGIN,
-            {
+        try {
+            const result = apiProcessor.post(Constants.ApiPath.LOGIN, {
                 phonenumber: phonenumber,
                 password: password
-            }
-        )
+            })
+            return result;
+        } catch (err) {
+            console.log(err);
+        }
+
     }
 }
 

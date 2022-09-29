@@ -5,7 +5,6 @@ const getHomePage = async (req, res) => {
 
     try {
         let data = await db.Users.findAll();
-        console.log("----------")
         console.log(data)
         return res.render("home.ejs", {
             data: JSON.stringify(data)

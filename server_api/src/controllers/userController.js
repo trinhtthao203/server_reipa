@@ -1,15 +1,15 @@
 import db from "../models/index";
 import userService from "../services/user.service"
+import Strings from "../constants/strings";
 
 const handleLogIn = async (req, res) => {
     const { phonenumber, password } = req.body;
 
-    console.log(phonenumber, password);
     if (!phonenumber || !password) {
         return res.status(400).json({
             code: 400,
-            error: {
-                message: "Phonenumber and password is require !",
+            data: {
+                message: Strings.Auth.PHONENUMBER_PASSWORD_REQUIRED_MESSAGE,
             }
         })
     }
@@ -18,7 +18,36 @@ const handleLogIn = async (req, res) => {
 
     return res.status(200).json({
         code: userData.code,
-        error: userData.error,
+        data: userData.data,
+    })
+}
+
+const handleRegister = async (req, res) => {
+    const { phonenumber, password, fullname, address, street_id, ward_id, avatar, role_id } = req.body;
+    if (!phonenumber || !password || !fullname || !address || !street_id || !ward_id || !role_id) {
+        return res.status(400).json({
+            code: 400,
+            data: {
+                message: Strings.Account.FEILD_REQUIRED_MESSAGE,
+            }
+        })
+    }
+
+    let checkPhoneNumber = await userService.checkExistsPhoneNumber(phonenumber);
+
+    if (checkPhoneNumber) {
+        return res.status(400).json({
+            code: 400,
+            data: {
+                message: Strings.Account.FEILD_REQUIRED_MESSAGE,
+            }
+        })
+    }
+    // let userData = await userService.handleUserRegister(req.body);
+
+    return res.status(200).json({
+        code: userData.code,
+        data: userData.data,
     })
 }
 
@@ -28,12 +57,12 @@ const getAllUser = async (req, res) => {
 
     return res.status(200).json({
         code: userData.code,
-        error: userData.error,
-        user: userData.user ? userData.user : {}
+        data: userData.data ? userData.data : {}
     })
 }
 
 module.exports = {
     handleLogIn: handleLogIn,
-    getAllUser: getAllUser
+    getAllUser: getAllUser,
+    handleRegister: handleRegister,
 }
