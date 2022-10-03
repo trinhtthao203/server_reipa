@@ -2,9 +2,13 @@ import db from "../models/index";
 import userService from "../services/user.service"
 import Strings from "../constants/strings";
 
+import dotenv from "dotenv";
+
+dotenv.config();
+
 const handleLogIn = async (req, res) => {
     const { phonenumber, password } = req.body;
-
+    console.log(password, phonenumber);
     if (!phonenumber || !password) {
         return res.status(400).json({
             code: 400,
@@ -28,7 +32,7 @@ const handleRegister = async (req, res) => {
         return res.status(400).json({
             code: 400,
             data: {
-                message: Strings.Account.FEILD_REQUIRED_MESSAGE,
+                message: Strings.Message.FEILD_REQUIRED_MESSAGE,
             }
         })
     }
@@ -39,11 +43,12 @@ const handleRegister = async (req, res) => {
         return res.status(400).json({
             code: 400,
             data: {
-                message: Strings.Account.FEILD_REQUIRED_MESSAGE,
+                message: Strings.Register.PHONE_NUMBER_EXISTS_MESSAGE,
             }
         })
     }
-    // let userData = await userService.handleUserRegister(req.body);
+
+    let userData = await userService.handleUserRegister(req.body);
 
     return res.status(200).json({
         code: userData.code,
@@ -52,12 +57,21 @@ const handleRegister = async (req, res) => {
 }
 
 const getAllUser = async (req, res) => {
-
     let userData = await userService.handleGetAllUser();
-
     return res.status(200).json({
         code: userData.code,
         data: userData.data ? userData.data : {}
+    })
+}
+
+
+const handleLogOut = async (req, res) => {
+
+    let userData = await userService.handleUserLogOut();
+
+    return res.status(200).json({
+        code: userData.code,
+        data: userData.data,
     })
 }
 
@@ -65,4 +79,5 @@ module.exports = {
     handleLogIn: handleLogIn,
     getAllUser: getAllUser,
     handleRegister: handleRegister,
+    handleLogOut: handleLogOut,
 }

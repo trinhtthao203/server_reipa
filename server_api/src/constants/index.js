@@ -4,6 +4,7 @@ const Constants = {
     Api: {
         BASE_URL: `${DOMAIN}/api`,
         TIMEOUT: 25 * 1000,
+        EXPIRES_IN: "3h",
     },
 
     /**

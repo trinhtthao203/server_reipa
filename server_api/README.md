@@ -1,6 +1,6 @@
 
 #run create table
-cd src
+cd server_api/src
 npx sequelize-cli db:migrate
 
 #run create seeder

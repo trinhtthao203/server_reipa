@@ -19,6 +19,9 @@ export default {
     Message: {
         COMMON_ERROR: "Đã có lỗi xảy ra. Vui lòng thử lại",
         REQUEST_TIMEOUT: "Hết phiên nhập",
+        REQUEST_401: "Unauthorized",
+        REQUEST_403: "Forbidden",
+        FEILD_REQUIRED_MESSAGE: "Vui lòng nhập các trường bắt buộc !",
     },
 
     Auth: {
@@ -49,14 +52,16 @@ export default {
         UPDATE_PASS_SUCCESS: "Cật nhật mật khẩu thành công. Vui lòng đăng nhập với mật khẩu mới",
     },
 
-    Account: {
-        FEILD_REQUIRED_MESSAGE: "Vui lòng nhập các trường bắt buộc !",
+    Register: {
+        SUCCESS_REGISTER_MESSAGE: "Đăng ký thành công !",
+        PHONE_NUMBER_EXISTS_MESSAGE: "Số điện thoại đã tồn tại !",
     },
 
     Database: {
         PHONE_NUMBER: "phonenumber",
         PASSWORD: "password",
         FULL_NAME: "fullname",
-        ADDRESS: "address"
+        ADDRESS: "address",
+        AVATAR: "avatar"
     }
 }

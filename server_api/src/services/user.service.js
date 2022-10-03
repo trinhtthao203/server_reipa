@@ -2,6 +2,17 @@ import db from "../models/index";
 import bcrypt from "bcryptjs";
 var salt = bcrypt.genSaltSync(10);
 import Strings from "../constants/strings";
+import jwt from "jsonwebtoken";
+import dotenv from "dotenv";
+import Constants from "../constants";
+
+dotenv.config();
+
+const handleUserLogOut = () => {
+    return new Promise(async (resolve, reject) => {
+
+    })
+}
 
 const handleUserLogIn = (phonenumber, password) => {
     return new Promise(async (resolve, reject) => {
@@ -12,10 +23,14 @@ const handleUserLogIn = (phonenumber, password) => {
             if (userInfo) {
                 let check = await bcrypt.compareSync(password, userInfo.password);
                 if (check) {
+                    const accessToken = jwt.sign({ id: userInfo.id }, process.env.ACCESS_TOKEN_SECRET, { expiresIn: Constants.Api.EXPIRES_IN });
+                    const refeshToken = jwt.sign({ id: userInfo.id }, process.env.REFRESH_TOKEN_SECRET);
                     resolve({
                         code: 200,
                         data: {
-                            message: Strings.Auth.SUCCESS_LOGIN_MESSAGE
+                            message: Strings.Auth.SUCCESS_LOGIN_MESSAGE,
+                            accessToken: accessToken,
+                            refeshToken: refeshToken
                         }
                     });
                 } else {
@@ -40,12 +55,14 @@ const handleUserLogIn = (phonenumber, password) => {
     })
 }
 
-const handleGetAllUser = () => {
+const handleGetAllUser = (page, size) => {
     return new Promise(async (resolve, reject) => {
         try {
-            let userInfo = await db.Users.findAll({
+            let userInfo = await db.Users.findAndCountAll({
                 attributes: [Strings.Database.PHONE_NUMBER, Strings.Database.FULL_NAME, Strings.Database.ADDRESS,],
-                raw: true
+                raw: true,
+                limit: 5,
+                offset: 10,
             });
             if (userInfo) {
                 resolve({
@@ -85,7 +102,7 @@ const handleUserRegister = (userInfo) => {
             resolve({
                 code: 200,
                 data: {
-                    message: "Create a new user success !!!!!"
+                    message: Strings.Register.SUCCESS_REGISTER_MESSAGE
                 }
             });
         } catch (e) {
@@ -126,5 +143,6 @@ module.exports = {
     handleUserLogIn: handleUserLogIn,
     handleGetAllUser: handleGetAllUser,
     handleUserRegister: handleUserRegister,
-    checkExistsPhoneNumber: checkExistsPhoneNumber
+    checkExistsPhoneNumber: checkExistsPhoneNumber,
+    handleUserLogOut: handleUserLogOut,
 }

@@ -1,7 +1,7 @@
 'use strict';
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Images', {
+    await queryInterface.createTable('Planning_areas', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -11,11 +11,32 @@ module.exports = {
       name: {
         type: Sequelize.STRING
       },
-      planning_area_id: {
+      function: {
+        type: Sequelize.STRING
+      },
+      area: {
+        type: Sequelize.FLOAT
+      },
+      address: {
+        type: Sequelize.STRING
+      },
+      coordinates: {
+        type: Sequelize.GEOMETRY
+      },
+      street_id: {
         type: Sequelize.INTEGER
       },
-      post_id: {
+      ward_id: {
         type: Sequelize.INTEGER
+      },
+      user_id: {
+        type: Sequelize.INTEGER
+      },
+      typeof_planning_area_id: {
+        type: Sequelize.INTEGER
+      },
+      approved: {
+        type: Sequelize.STRING
       },
       createdAt: {
         allowNull: false,
@@ -28,6 +49,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Images');
+    await queryInterface.dropTable('Planning_areas');
   }
 };

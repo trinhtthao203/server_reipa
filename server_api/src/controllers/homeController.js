@@ -21,7 +21,6 @@ const postUser = async (req, res) => {
     return res.send("post crud");
 }
 
-
 const getCRUD = async (req, res) => {
     return res.render("crud.ejs")
 }
