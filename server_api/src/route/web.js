@@ -6,12 +6,47 @@ import Strings from "../constants/strings";
 import Constants from "../constants/index";
 let router = express.Router();
 
+import swaggerJsdoc from "swagger-jsdoc";
+import swaggerUi from "swagger-ui-express";
+
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 
 dotenv.config();
 
+const options = {
+    definition: {
+        openapi: "3.0.0",
+        info: {
+            title: "REST API Docs",
+            version: "1.0.0"
+        },
+        servers: [{
+            url: "http://localhost:8080"
+        }],
+        components: {
+            securitySchemas: {
+                bearerAuth: {
+                    type: "http",
+                    scheme: "bearer",
+                    bearerFormat: "JWT",
+                },
+            },
+        },
+        security: [
+            {
+                bearerAuth: [],
+            },
+        ],
+    },
+    apis: ["./web.js"]
+}
+
+
+
 const initWebRoutes = (app) => {
+    // const swaggerSpec = swaggerJsdoc(options);
+    // app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
     const authenToken = (req, res, next) => {
         const authorizationHeader = req.headers["authorization"];
@@ -63,19 +98,21 @@ const initWebRoutes = (app) => {
             res.json({ accessToken });
         })
     }
+    router.get("/api/user/get-all", authenToken, userController.getAllUser)
+
+
 
     router.get("/", homeController.getHomePage)
     router.get("/crud", homeController.getCRUD)
 
     //get
-    router.get("/api/user/get-all", authenToken, userController.getAllUser)
     router.get("/api/ward/get-all", authenToken, wardController.getAllWard)
 
     //post
-    router.post("/api/refreshToken", refeshToken)
-    router.post("/api/logout", userController.handleLogOut)
     router.post("/api/auth/login", userController.handleLogIn)
     router.post("/api/auth/register", userController.handleRegister)
+    router.post("/api/refreshToken", refeshToken)
+    router.post("/api/logout", userController.handleLogOut)
 
     //put
 

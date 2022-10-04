@@ -4,7 +4,6 @@ const handleGetAllWard = () => {
     return new Promise(async (resolve, reject) => {
         try {
             let wardData = await db.Wards.findAll();
-            console.log(wardData);
             if (wardData) {
                 resolve({
                     code: 200,
