@@ -2,15 +2,15 @@ import Strings from "../constants/strings";
 import db from "../models/index";
 const { Op } = require("sequelize");
 
-const handleGetAllWard = () => {
+const handleGetAllDistrict = () => {
     return new Promise(async (resolve, reject) => {
         try {
-            let wardData = await db.Wards.findAll();
-            if (wardData) {
+            let districtData = await db.Districts.findAll();
+            if (districtData) {
                 resolve({
                     code: 200,
                     data: {
-                        ward: wardData,
+                        district: districtData,
                     }
                 });
             } else {
@@ -27,25 +27,22 @@ const handleGetAllWard = () => {
     })
 }
 
-const getHandleWardSignUp = (province_id, district_id) => {
+const getHandledistrictByProvince = (province_id) => {
     return new Promise(async (resolve, reject) => {
         try {
-            let wardData = await db.Wards.findAll({
+            let districtData = await db.Districts.findAll({
                 where: {
-                    [Op.and]: [
-                        { province_id: province_id },
-                        { district_id: district_id }
-                    ]
+                    province_id: province_id
                 },
                 order: [
                     ['name', 'ASC'],
                 ],
             })
-            if (wardData) {
+            if (districtData) {
                 resolve({
                     code: 200,
                     data: {
-                        ward: wardData,
+                        district: districtData,
                     }
                 });
             } else {
@@ -63,6 +60,6 @@ const getHandleWardSignUp = (province_id, district_id) => {
 }
 
 module.exports = {
-    handleGetAllWard: handleGetAllWard,
-    getHandleWardSignUp: getHandleWardSignUp
+    handleGetAllDistrict: handleGetAllDistrict,
+    getHandledistrictByProvince: getHandledistrictByProvince
 }

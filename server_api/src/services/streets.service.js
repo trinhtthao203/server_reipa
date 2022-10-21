@@ -1,16 +1,15 @@
 import Strings from "../constants/strings";
 import db from "../models/index";
 const { Op } = require("sequelize");
-
-const handleGetAllWard = () => {
+const handleGetAllStreet = () => {
     return new Promise(async (resolve, reject) => {
         try {
-            let wardData = await db.Wards.findAll();
-            if (wardData) {
+            let streetData = await db.Streets.findAll();
+            if (streetData) {
                 resolve({
                     code: 200,
                     data: {
-                        ward: wardData,
+                        streets: streetData,
                     }
                 });
             } else {
@@ -27,10 +26,10 @@ const handleGetAllWard = () => {
     })
 }
 
-const getHandleWardSignUp = (province_id, district_id) => {
+const handleGetStreetSignUp = (province_id, district_id) => {
     return new Promise(async (resolve, reject) => {
         try {
-            let wardData = await db.Wards.findAll({
+            let streetData = await db.Streets.findAll({
                 where: {
                     [Op.and]: [
                         { province_id: province_id },
@@ -40,12 +39,12 @@ const getHandleWardSignUp = (province_id, district_id) => {
                 order: [
                     ['name', 'ASC'],
                 ],
-            })
-            if (wardData) {
+            });
+            if (streetData) {
                 resolve({
                     code: 200,
                     data: {
-                        ward: wardData,
+                        streets: streetData,
                     }
                 });
             } else {
@@ -63,6 +62,6 @@ const getHandleWardSignUp = (province_id, district_id) => {
 }
 
 module.exports = {
-    handleGetAllWard: handleGetAllWard,
-    getHandleWardSignUp: getHandleWardSignUp
+    handleGetAllStreet: handleGetAllStreet,
+    handleGetStreetSignUp: handleGetStreetSignUp
 }

@@ -5,7 +5,7 @@
 
 export default {
     App: {
-        TITLE: "Maywork"
+        TITLE: "Reipa"
     },
     Common: {
         MOMENT_DATE_FORMAT: "DD/MM/YYYY",
@@ -21,35 +21,19 @@ export default {
         REQUEST_TIMEOUT: "Hết phiên nhập",
         REQUEST_401: "Unauthorized",
         REQUEST_403: "Forbidden",
+        REQUEST_TIME_OUT: "Hết phiên đăng nhập vui lòng đăng nhập lại!",
         FEILD_REQUIRED_MESSAGE: "Vui lòng nhập các trường bắt buộc !",
+        NOT_FOUND_MESSAGE: "Không tìm thấy dữ liệu",
+        SUCCES_LOGIN_MESSAGE: "Đăng nhập thành công",
+        PHONE_NUMBER_EXISTS_MESSAGE: "Số điện thoại tồn tại",
+        PHONE_NUMBER_NOT_EXISTS_MESSAGE: "Số điện thoại không tồn tại"
     },
 
-    Auth: {
-        PASSWORD: "Mật khẩu",
-        OLD_PASSWORD: "Mật khẩu cũ",
-        NEW_PASSWORD: "Mật khẩu mới",
-        TAKE_PHOTO: "Chụp ảnh",
-        USER_NAME: "Tên đăng nhập",
-        PHONE_NUMBER: "Số điện thoại",
-        FORGOT_PASSWORD: "Quên mật khẩu?",
-        CONFIRM_PASSWORD: "Xác nhận mật khẩu",
-        SELECT_FROM_LIBRARY: "Chọn ảnh từ thư viện",
-
-        SUCCESS_LOGIN_MESSAGE: "Đăng nhập thành công !",
-        PASSWORD_REQUIRED_MESSAGE: "Vui lòng nhập mật khẩu",
-        NEW_PASSWORD_REQUIRED_MESSAGE: "Vui lòng nhập mật khẩu mới",
-        USER_NAME_REQUIRED_MESSAGE: "Vui lòng nhập tài khoản",
-        PHONE_NUMBER_REQUIRED_MESSAGE: "Vui lòng nhập số điện thoại",
-        PHONE_NUMBER_INCORRECT_MESSAGE: "Số điện thoại không tồn tại",
+    User: {
+        ID_INCORRECT_MESSAGE: "Id tài khoản không tồn tại",
         PASSWORD_INCORRECT_MESSAGE: "Mật khẩu không đúng",
-        PHONE_NUMBER_INVALID_MESSAGE: "Số điện thoại chưa đúng định dạng",
-        PASSWORD_NOT_MATHCHING_MESSAGE: "Mật khẩu xác nhận không trùng khớp",
-        CONFIRM_PASSWORD_REQUIRED_MESSAGE: "Vui lòng nhập mật khẩu xác nhận",
-        PHONENUMBER_PASSWORD_REQUIRED_MESSAGE: "Vui lòng nhập số điện thoại và mật khẩu !",
-        DONT_HAVE_ACCOUNT: "Bạn chưa có tài khoản?",
-        HAVE_ACCOUNT: "Đã có tài khoản?",
-        UPDATE_PASS_SUCCESS_WITH_OUT_LOGIN: "Cật nhật mật khẩu thành công",
-        UPDATE_PASS_SUCCESS: "Cật nhật mật khẩu thành công. Vui lòng đăng nhập với mật khẩu mới",
+        PHONE_NUMBER_INCORRECT_MESSAGE: "Số điện thoại không đúng",
+        SUCCESS_LOGIN_MESSAGE: "Đăng nhập thành công"
     },
 
     Register: {
@@ -57,11 +41,19 @@ export default {
         PHONE_NUMBER_EXISTS_MESSAGE: "Số điện thoại đã tồn tại !",
     },
 
+    Address: {
+        REQUEST_PROVINCE_ID: "Vui lòng chọn mã tỉnh"
+    },
+
     Database: {
+        ID: "id",
         PHONE_NUMBER: "phonenumber",
         PASSWORD: "password",
         FULL_NAME: "fullname",
         ADDRESS: "address",
-        AVATAR: "avatar"
+        AVATAR: "avatar",
+        STREET_ID: "street_id",
+        WARD_ID: "ward_id",
+        ROLE_ID: "role_id",
     }
 }

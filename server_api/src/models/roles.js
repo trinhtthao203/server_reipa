@@ -10,6 +10,8 @@ module.exports = (sequelize, DataTypes) => {
   }
   Roles.init({
     name: DataTypes.STRING,
+    icon: DataTypes.STRING,
+    description: DataTypes.STRING,
     createdAt: DataTypes.DATE,
     updatedAt: DataTypes.DATE,
   }, {

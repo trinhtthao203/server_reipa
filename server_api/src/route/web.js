@@ -1,54 +1,21 @@
 import express from "express";
 import homeController from "../controllers/homeController";
 import userController from "../controllers/userController";
+import provinceController from "../controllers/provinceController";
+import districtController from "../controllers/districtController";
 import wardController from "../controllers/wardController";
+import streetController from "../controllers/streetController";
 import Strings from "../constants/strings";
 import Constants from "../constants/index";
 let router = express.Router();
-
-import swaggerJsdoc from "swagger-jsdoc";
-import swaggerUi from "swagger-ui-express";
 
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 
 dotenv.config();
 
-const options = {
-    definition: {
-        openapi: "3.0.0",
-        info: {
-            title: "REST API Docs",
-            version: "1.0.0"
-        },
-        servers: [{
-            url: "http://localhost:8080"
-        }],
-        components: {
-            securitySchemas: {
-                bearerAuth: {
-                    type: "http",
-                    scheme: "bearer",
-                    bearerFormat: "JWT",
-                },
-            },
-        },
-        security: [
-            {
-                bearerAuth: [],
-            },
-        ],
-    },
-    apis: ["./web.js"]
-}
-
-
-
 const initWebRoutes = (app) => {
-    // const swaggerSpec = swaggerJsdoc(options);
-    // app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
-
-    const authenToken = (req, res, next) => {
+    const authenToken = async (req, res, next) => {
         const authorizationHeader = req.headers["authorization"];
 
         //'Beaer [token]'
@@ -69,6 +36,7 @@ const initWebRoutes = (app) => {
                     message: Strings.Message.REQUEST_403
                 }
             })
+            req.user = data;
             next();
         })
     }
@@ -98,19 +66,32 @@ const initWebRoutes = (app) => {
             res.json({ accessToken });
         })
     }
-    router.get("/api/user/get-all", authenToken, userController.getAllUser)
-
-
 
     router.get("/", homeController.getHomePage)
-    router.get("/crud", homeController.getCRUD)
 
     //get
-    router.get("/api/ward/get-all", authenToken, wardController.getAllWard)
+    router.get("/api/user/get-user/id", authenToken, userController.getUser)
+    router.get("/api/user/get-user/:id", authenToken, userController.getUser)
+    router.get("/api/user/get-all", authenToken, userController.getAllUser)
+    router.get("/api/provinces/get-all", provinceController.getAllProvince)
+    router.get("/api/districts/get-all", districtController.getAllDistrict)
+    router.get("/api/wards/get-all", wardController.getAllWard)
+    router.get("/api/streets/get-all", streetController.getAllStreet)
+    router.get("/api/roles/get-all", userController.getAllRole)
 
     //post
+    router.post("/api/wards/sign-up", wardController.getWardSignUp)
+    router.post("/api/streets/sign-up", streetController.getStreetSignUp)
+    router.post("/api/districts/get-by-province", districtController.getDistrictByProvince)
     router.post("/api/auth/login", userController.handleLogIn)
     router.post("/api/auth/register", userController.handleRegister)
+    router.post("/api/auth/check-phonenumber", userController.handleCheckPhoneNumber)
+    router.post("/api/auth/reset-password", userController.handleResetPasword)
+    router.post("/api/auth/update-profile", authenToken, (req, res) => {
+        const user = red;
+        if (!user) return res.status(401).json({ success: false, msg: "fail" })
+    })
+
     router.post("/api/refreshToken", refeshToken)
     router.post("/api/logout", userController.handleLogOut)
 
