@@ -17,19 +17,25 @@ module.exports = {
       area: {
         type: Sequelize.FLOAT
       },
+      length: {
+        type: Sequelize.FLOAT
+      },
+      width: {
+        type: Sequelize.FLOAT
+      },
       address: {
         type: Sequelize.STRING
       },
       coordinates: {
         type: Sequelize.GEOMETRY
       },
-      street_id: {
-        type: Sequelize.INTEGER
-      },
       ward_id: {
         type: Sequelize.INTEGER
       },
       user_id: {
+        type: Sequelize.INTEGER
+      },
+      investor_id: {
         type: Sequelize.INTEGER
       },
       typeof_planning_area_id: {

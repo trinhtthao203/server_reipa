@@ -16,7 +16,6 @@ const getAllStreet = async (req, res) => {
 
 const getStreetSignUp = async (req, res) => {
     const { province_id, district_id } = req.body;
-    console.log(province_id, district_id);
     if (!province_id || !district_id) {
         return res.status(400).json({
             code: 400,

@@ -22,14 +22,6 @@ module.exports = {
       createdAt: new Date(),
       updatedAt: new Date()
     },
-    {
-      name: "Chuyên viên môi giới",
-      icon: "home-work",
-      description: "Người chuyên môi giới tư vấn, tìm kiếm khách hàng và các nhu cầu bất động sản",
-      createdAt: new Date(),
-      updatedAt: new Date()
-    },
-
     ]);
   },
   down: (queryInterface, Sequelize) => {

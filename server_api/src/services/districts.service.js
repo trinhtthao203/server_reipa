@@ -1,6 +1,5 @@
 import Strings from "../constants/strings";
 import db from "../models/index";
-const { Op } = require("sequelize");
 
 const handleGetAllDistrict = () => {
     return new Promise(async (resolve, reject) => {

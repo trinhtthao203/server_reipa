@@ -13,7 +13,7 @@ module.exports = {
       { "name": "Qu\u1ea3ng Nam", "code": "QNA" },
       { "name": "B\u00e0 R\u1ecba V\u0169ng T\u00e0u", "code": "VT" },
       { "name": "\u0110\u1eafk L\u1eafk", "code": "DDL" },
-      { "name": "C\u1ea7n Th\u01a1", "code": "CT" },
+      { "name": "C\u1ea7n Th\u01a1", "code": "CT", },
       { "name": "B\u00ecnh Thu\u1eadn  ", "code": "BTH" },
       { "name": "L\u00e2m \u0110\u1ed3ng", "code": "LDD" },
       { "name": "Th\u1eeba Thi\u00ean Hu\u1ebf", "code": "TTH" },

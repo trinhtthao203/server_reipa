@@ -121,7 +121,6 @@ const handleRegister = async (req, res) => {
 
 const handleLogIn = async (req, res) => {
     const { phonenumber, password } = req.body;
-    console.log(password, phonenumber);
     if (!phonenumber || !password) {
         return res.status(400).json({
             code: 400,

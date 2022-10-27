@@ -16,6 +16,7 @@ module.exports = (sequelize, DataTypes) => {
   Provinces.init({
     name: DataTypes.STRING,
     code: DataTypes.STRING,
+    coordinates: DataTypes.GEOMETRY,
     createdAt: DataTypes.DATE,
     updatedAt: DataTypes.DATE
   }, {

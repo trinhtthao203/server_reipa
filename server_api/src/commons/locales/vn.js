@@ -45,6 +45,10 @@ export default {
         REQUEST_PROVINCE_ID: "Vui lòng chọn mã tỉnh"
     },
 
+    Provinces: {
+        UPDATE_BORDER_PROVINCE_SUCCES: "Cập nhật ranh giới tỉnh thành công"
+    },
+
     Database: {
         ID: "id",
         PHONE_NUMBER: "phonenumber",

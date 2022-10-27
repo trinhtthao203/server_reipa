@@ -48,7 +48,7 @@ module.exports = {
       updatedAt: new Date()
     },
     {
-      name: "Bất động sản khác",
+      name: "Loại vùng quy hoạch khác",
       createdAt: new Date(),
       updatedAt: new Date()
     },
