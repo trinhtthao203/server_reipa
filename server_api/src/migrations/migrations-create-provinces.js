@@ -11,10 +11,10 @@ module.exports = {
       name: {
         type: Sequelize.STRING
       },
-      code: {
+      type: {
         type: Sequelize.STRING
       },
-      coordinates: {
+      geometry: {
         type: Sequelize.GEOMETRY
       },
       createdAt: {

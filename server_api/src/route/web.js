@@ -6,6 +6,7 @@ import districtController from "../controllers/districtController";
 import wardController from "../controllers/wardController";
 import streetController from "../controllers/streetController";
 import planningAreaController from "../controllers/planningAreasController";
+import multer from "multer";
 import Strings from "../constants/strings";
 import Constants from "../constants/index";
 let router = express.Router();
@@ -16,6 +17,19 @@ import dotenv from "dotenv";
 dotenv.config();
 
 const initWebRoutes = (app) => {
+
+    // SET STORAGE
+    var storage = multer.diskStorage({
+        destination: function (req, file, cb) {
+            cb(null, 'uploads')
+        },
+        filename: function (req, file, cb) {
+            cb(null, file.fieldname + '-' + Date.now())
+        }
+    })
+
+    var upload = multer({ storage: storage })
+
     const authenToken = async (req, res, next) => {
         const authorizationHeader = req.headers["authorization"];
 
@@ -91,6 +105,9 @@ const initWebRoutes = (app) => {
 
     //ward
     router.get("/api/wards/get-all", wardController.getAllWard)
+    //chua xong
+    router.post("/api/wards/update-border", upload.single('myFile'), wardController.updateBorder)
+    router.post("/api/wards/update-border-id", wardController.updateBorderID)
     router.post("/api/wards/sign-up", wardController.getWardSignUp)
 
     //street

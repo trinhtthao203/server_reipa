@@ -23,7 +23,7 @@ module.exports = (sequelize, DataTypes) => {
     bedroom: DataTypes.INTEGER,
     toilet: DataTypes.INTEGER,
     street_id: DataTypes.INTEGER,
-    coordinates: DataTypes.GEOMETRY,
+    geometry: DataTypes.GEOMETRY,
     introduction: DataTypes.TEXT,
     typeof_real_estate_id: DataTypes.INTEGER,
     typeof_Posts_id: DataTypes.INTEGER,

@@ -11,7 +11,7 @@ module.exports = {
       name: {
         type: Sequelize.STRING
       },
-      prefix: {
+      type: {
         type: Sequelize.STRING
       },
       province_id: {
@@ -19,6 +19,9 @@ module.exports = {
       },
       district_id: {
         type: Sequelize.INTEGER
+      },
+      geometry: {
+        type: Sequelize.GEOMETRY
       },
       createdAt: {
         allowNull: true,

@@ -1,6 +1,6 @@
 import db from "../models/index";
 import Strings from "../constants/strings";
-const { QueryTypes } = require('sequelize');
+require('dotenv').config();
 const { Sequelize } = require('sequelize');
 // Option 3: Passing parameters separately (other dialects)
 const sequelize = new Sequelize(process.env.DATABASE, process.env.USER_NAME, process.env.PASS_WORD, {
@@ -8,6 +8,8 @@ const sequelize = new Sequelize(process.env.DATABASE, process.env.USER_NAME, pro
     dialect: process.env.DIALECT,
     logging: false,
 });
+const { QueryTypes } = require('sequelize');
+
 const handleGetAllProvince = () => {
     return new Promise(async (resolve, reject) => {
         try {
@@ -40,7 +42,13 @@ const handleGetAllProvince = () => {
 const handleGetBorderProvince = (id) => {
     return new Promise(async (resolve, reject) => {
         try {
-            let provincesData = await sequelize.query(`SELECT ST_AsGeoJSON(coordinates) as coordinates FROM provinces WHERE id=?;`,
+            let provincesData = await sequelize.query(
+                `SELECT json_build_object(
+                        'type', 'FeatureCollection',
+                        'features', json_agg(ST_AsGeoJSON(t.*)::json)
+                        )
+                    FROM public."Provinces" as t(id, name, code)
+                    WHERE id=?`,
                 {
                     replacements: [id],
                     type: QueryTypes.SELECT

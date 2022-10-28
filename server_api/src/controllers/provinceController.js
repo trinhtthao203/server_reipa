@@ -33,13 +33,7 @@ const getBorderProvince = async (req, res) => {
 }
 
 const updateBorderProvince = async (req, res) => {
-    const { id, coordinates } = req.body;
-    const geometry =
-    {
-        type: "Polygon",
-        coordinates: coordinates
-    }
-
+    const { id, geometry } = req.body;
     let provinceData = await provinceService.handleUpdateBorderProvince(id, geometry);
 
     return res.status(200).json({

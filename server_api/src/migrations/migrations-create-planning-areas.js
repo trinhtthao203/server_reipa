@@ -26,7 +26,7 @@ module.exports = {
       address: {
         type: Sequelize.STRING
       },
-      coordinates: {
+      geometry: {
         type: Sequelize.GEOMETRY
       },
       ward_id: {

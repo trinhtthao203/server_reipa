@@ -35,7 +35,7 @@ module.exports = {
       street_id: {
         type: Sequelize.INTEGER
       },
-      coordinates: {
+      geometry: {
         type: Sequelize.GEOMETRY
       },
       approved: {

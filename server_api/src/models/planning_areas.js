@@ -20,7 +20,7 @@ module.exports = (sequelize, DataTypes) => {
     length: DataTypes.FLOAT,
     width: DataTypes.FLOAT,
     address: DataTypes.STRING,
-    coordinates: DataTypes.GEOMETRY,
+    geometry: DataTypes.GEOMETRY,
     ward_id: DataTypes.INTEGER,
     user_id: DataTypes.INTEGER,
     investor_id: DataTypes.INTEGER,

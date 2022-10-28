@@ -15,9 +15,10 @@ module.exports = (sequelize, DataTypes) => {
   }
   Wards.init({
     name: DataTypes.STRING,
-    prefix: DataTypes.STRING,
+    type: DataTypes.STRING,
     province_id: DataTypes.INTEGER,
     district_id: DataTypes.INTEGER,
+    geometry: DataTypes.GEOMETRY,
     createdAt: DataTypes.DATE,
     updatedAt: DataTypes.DATE
   }, {

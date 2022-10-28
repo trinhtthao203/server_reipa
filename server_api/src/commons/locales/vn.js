@@ -46,8 +46,19 @@ export default {
     },
 
     Provinces: {
-        UPDATE_BORDER_PROVINCE_SUCCES: "Cập nhật ranh giới tỉnh thành công"
+        UPDATE_BORDER_PROVINCE_SUCCES: "Cập nhật ranh giới tỉnh thành công",
     },
+
+    Wards: {
+        UPDATE_BORDER_WARD_SUCCES: "Cập nhật ranh giới phường/xã thành công",
+        REQUEST_PROVINCE_MESSAGE: "Không tìm thấy mã tỉnh/thành phố ",
+        REQUEST_DISTRICT_MESSAGE: "Không tìm thấy mã quận/huyện",
+        REQUEST_WARD_MESSAGE: "Không tìm thấy mã xã/phường",
+        NOT_CORRECT_WARD_MESSAGE: "Không tìm thấy mã xã/phường",
+        CORRECT_WARD_MESSAGE: "Tìm thấy mã xã/phường",
+        REQUEST_COORDINATES_MESSAGE: "Không tìm thấy tọa độ ranh giới phường/xã",
+    },
+
 
     Database: {
         ID: "id",
