@@ -17,8 +17,6 @@ module.exports = (sequelize, DataTypes) => {
     name: DataTypes.STRING,
     function: DataTypes.STRING,
     area: DataTypes.FLOAT,
-    length: DataTypes.FLOAT,
-    width: DataTypes.FLOAT,
     address: DataTypes.STRING,
     geometry: DataTypes.GEOMETRY,
     ward_id: DataTypes.INTEGER,

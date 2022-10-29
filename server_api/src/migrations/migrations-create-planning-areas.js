@@ -17,12 +17,6 @@ module.exports = {
       area: {
         type: Sequelize.FLOAT
       },
-      length: {
-        type: Sequelize.FLOAT
-      },
-      width: {
-        type: Sequelize.FLOAT
-      },
       address: {
         type: Sequelize.STRING
       },

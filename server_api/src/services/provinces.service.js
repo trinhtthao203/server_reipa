@@ -47,7 +47,7 @@ const handleGetBorderProvince = (id) => {
                         'type', 'FeatureCollection',
                         'features', json_agg(ST_AsGeoJSON(t.*)::json)
                         )
-                    FROM public."Provinces" as t(id, name, code)
+                    FROM public."Provinces" as t(id, name, type)
                     WHERE id=?`,
                 {
                     replacements: [id],

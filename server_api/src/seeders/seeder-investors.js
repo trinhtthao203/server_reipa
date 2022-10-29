@@ -10,6 +10,15 @@ module.exports = {
       createdAt: new Date(),
       updatedAt: new Date()
     },
+    {
+      name: "VinHomes Group",
+      address: "132A ",
+      street_id: 1,
+      ward_id: 2338,
+      avatar: null,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
     ]);
   },
   down: (queryInterface, Sequelize) => {

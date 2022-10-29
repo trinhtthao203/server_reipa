@@ -6,6 +6,8 @@ import districtController from "../controllers/districtController";
 import wardController from "../controllers/wardController";
 import streetController from "../controllers/streetController";
 import planningAreaController from "../controllers/planningAreasController";
+import investorController from "../controllers/investorController";
+import typePlanningArea from "../controllers/typeOfPlanningArea";
 import multer from "multer";
 import Strings from "../constants/strings";
 import Constants from "../constants/index";
@@ -105,6 +107,8 @@ const initWebRoutes = (app) => {
 
     //ward
     router.get("/api/wards/get-all", wardController.getAllWard)
+    router.post("/api/wards/get-border-ward", wardController.getBorderWard)
+
     //chua xong
     router.post("/api/wards/update-border", upload.single('myFile'), wardController.updateBorder)
     router.post("/api/wards/update-border-id", wardController.updateBorderID)
@@ -115,8 +119,14 @@ const initWebRoutes = (app) => {
     router.post("/api/streets/sign-up", streetController.getStreetSignUp)
 
     //planning-area
-    router.get("/api/get_all_planning_areas", planningAreaController.getAllPlanningArea)
-    router.post("/api/add_planning_areas", planningAreaController.addPlanningArea)
+    router.get("/api/planning_area/get_all_planning_areas", planningAreaController.getAllPlanningArea)
+    router.post("/api/planning_area/add_planning_areas", upload.array('photo', 3), planningAreaController.addPlanningArea)
+
+    //investor
+    router.get("/api/investor/get_all_investor", investorController.getAllInvestor)
+
+    //type of planning area
+    router.get("/api/type_of_planning_area/get_all_type", typePlanningArea.getAllType)
 
 
     //rest api

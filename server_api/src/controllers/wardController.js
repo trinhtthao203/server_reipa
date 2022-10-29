@@ -14,10 +14,33 @@ const getAllWard = async (req, res) => {
     })
 }
 
+const getBorderWard = async (req, res) => {
+    const { id } = req.body;
+    if (!id) {
+        return res.status(400).json({
+            code: 400,
+            data: {
+                message: Strings.Wards.REQUEST_WARD_MESSAGE,
+            }
+        })
+    }
+    let wardData = await wardService.handleGetBorderWard(id);
+
+    return res.status(200).json({
+        code: wardData.code,
+        data: wardData.data ? wardData.data : {}
+    })
+}
+
 const getWardSignUp = async (req, res) => {
     const { province_id, district_id } = req.body;
     if (!province_id || !district_id) {
-        console.log("Khong lay duoc ma tinh, ma huyen")
+        return res.status(400).json({
+            code: 400,
+            data: {
+                message: Strings.Wards.REQUEST_PROVINCE_MESSAGE,
+            }
+        })
     }
     let wardData = await wardService.getHandleWardSignUp(province_id, district_id);
 
@@ -82,8 +105,6 @@ const updateBorderID = async (req, res) => {
         })
     }
 
-    console.log(coordinates);
-
     let checkExistWardID = await wardService.checkExistsWardID(province_id, district_id, ward_id);
     if (checkExistWardID.code === 400) {
         return res.status(400).json({
@@ -106,5 +127,6 @@ module.exports = {
     getAllWard: getAllWard,
     getWardSignUp: getWardSignUp,
     updateBorder: updateBorder,
-    updateBorderID: updateBorderID
+    updateBorderID: updateBorderID,
+    getBorderWard: getBorderWard
 }
