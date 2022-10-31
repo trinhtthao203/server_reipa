@@ -1,20 +1,24 @@
-'use strict';
+"use strict";
 const {
   Model
-} = require('sequelize');
+} = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class Furnitures extends Model {
     static associate(models) {
-      // define association here
+      Furnitures.hasMany(models.Posts, { foreignKey: "furniture_id" });
     }
   }
   Furnitures.init({
+    id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true
+    },
     name: DataTypes.STRING,
     createdAt: DataTypes.DATE,
     updatedAt: DataTypes.DATE,
   }, {
     sequelize,
-    modelName: 'Furnitures',
+    modelName: "Furnitures",
   });
   return Furnitures;
 };

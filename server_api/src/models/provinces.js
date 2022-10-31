@@ -1,19 +1,19 @@
-'use strict';
+"use strict";
 const {
   Model
-} = require('sequelize');
+} = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class Provinces extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
     static associate(models) {
-      // define association here
+      Provinces.hasMany(models.Districts, { foreignKey: "province_id" });
+      Provinces.hasMany(models.Streets, { foreignKey: "province_id" });
     }
   }
   Provinces.init({
+    id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true
+    },
     name: DataTypes.STRING,
     type: DataTypes.STRING,
     geometry: DataTypes.GEOMETRY,
@@ -21,7 +21,7 @@ module.exports = (sequelize, DataTypes) => {
     updatedAt: DataTypes.DATE
   }, {
     sequelize,
-    modelName: 'Provinces',
+    modelName: "Provinces",
   });
   return Provinces;
 };

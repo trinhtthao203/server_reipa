@@ -3,22 +3,23 @@ const {
   Model
 } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
-  class Typeof_planning_areas extends Model {
+  class Status extends Model {
     static associate(models) {
-      Typeof_planning_areas.hasMany(models.Planning_areas, { foreignKey: "typeof_planning_area_id" });
+      Status.hasMany(models.Posts, { foreignKey: "status_id" });
+      Status.hasMany(models.Planning_areas, { foreignKey: "status_id" });
     }
   }
-  Typeof_planning_areas.init({
+  Status.init({
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true
     },
     name: DataTypes.STRING,
     createdAt: DataTypes.DATE,
-    updatedAt: DataTypes.DATE,
+    updatedAt: DataTypes.DATE
   }, {
     sequelize,
-    modelName: "Typeof_planning_areas",
+    modelName: "Status",
   });
-  return Typeof_planning_areas;
+  return Status;
 };

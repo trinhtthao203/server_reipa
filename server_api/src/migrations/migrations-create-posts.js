@@ -14,17 +14,28 @@ module.exports = {
       price: {
         type: Sequelize.STRING
       },
+      address: {
+        type: Sequelize.STRING
+      },
       area: {
         type: Sequelize.STRING
       },
       juridical_id: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: {
+          model: "Juridicals",
+          key: "id"
+        }
       },
       furniture_id: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: {
+          model: "Furnitures",
+          key: "id"
+        }
       },
-      number_of_floors: {
-        type: Sequelize.STRING
+      structure: {
+        type: Sequelize.INTEGER
       },
       bedroom: {
         type: Sequelize.STRING
@@ -32,22 +43,28 @@ module.exports = {
       toilet: {
         type: Sequelize.STRING
       },
-      street_id: {
-        type: Sequelize.INTEGER
-      },
       geometry: {
         type: Sequelize.GEOMETRY
       },
-      approved: {
-        type: Sequelize.STRING
+      status_id: {
+        type: Sequelize.INTEGER
       },
       introduction: {
         type: Sequelize.TEXT
       },
+      user_id: {
+        type: Sequelize.INTEGER
+      },
+      street_id: {
+        type: Sequelize.INTEGER
+      },
+      ward_id: {
+        type: Sequelize.INTEGER
+      },
       typeof_real_estate_id: {
         type: Sequelize.INTEGER
       },
-      typeof_post_id: {
+      typeof_posts_id: {
         type: Sequelize.INTEGER
       },
       createdAt: {

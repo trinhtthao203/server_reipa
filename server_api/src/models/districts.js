@@ -1,14 +1,20 @@
-'use strict';
+"use strict";
 const {
   Model
-} = require('sequelize');
+} = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class Districts extends Model {
     static associate(models) {
-      // define association here
+      Districts.belongsTo(models.Provinces, { foreignKey: "province_id" });
+      Districts.hasMany(models.Wards, { foreignKey: "district_id" });
+      Districts.hasMany(models.Streets, { foreignKey: "district_id" });
     }
   }
   Districts.init({
+    id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true
+    },
     name: DataTypes.STRING,
     type: DataTypes.STRING,
     province_id: DataTypes.INTEGER,
@@ -17,7 +23,7 @@ module.exports = (sequelize, DataTypes) => {
     updatedAt: DataTypes.DATE
   }, {
     sequelize,
-    modelName: 'Districts',
+    modelName: "Districts",
   });
   return Districts;
 };

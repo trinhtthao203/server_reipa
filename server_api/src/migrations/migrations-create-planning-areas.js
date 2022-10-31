@@ -30,13 +30,17 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       investor_id: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: {
+          model: "Investors",
+          key: "id"
+        }
       },
       typeof_planning_area_id: {
         type: Sequelize.INTEGER
       },
-      approved: {
-        type: Sequelize.STRING
+      status_id: {
+        type: Sequelize.INTEGER
       },
       createdAt: {
         allowNull: false,

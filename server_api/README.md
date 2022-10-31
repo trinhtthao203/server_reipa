@@ -6,5 +6,8 @@ CREATE EXTENSION postgis;
 cd server_api/src
 npx sequelize-cli db:migrate
 
-#run create seeder
+#run seeder all file
 npx sequelize-cli db:seed:all
+
+#run seeder one file
+npx sequelize db:seed --seed name.js

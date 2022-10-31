@@ -9,7 +9,7 @@ module.exports = {
       street_id: null,
       ward_id: null,
       avatar: null,
-      role_id: 0,
+      role_id: 1,
       createdAt: new Date(),
       updatedAt: new Date()
     },
@@ -21,7 +21,7 @@ module.exports = {
       street_id: null,
       ward_id: null,
       avatar: null,
-      role_id: 1,
+      role_id: 2,
       createdAt: new Date(),
       updatedAt: new Date()
     },
@@ -30,10 +30,10 @@ module.exports = {
       password: "'$2a$10$qpNKUWtlDp7EMWXm/FGz5OFmClLWGmwCIDBm.PSSfcbI6MaRM.YMe'",
       fullname: "Trịnh Thị Thanh Trúc",
       address: "1/1",
-      street_id: 20204,
-      ward_id: 2375,
+      street_id: null,
+      ward_id: null,
       avatar: null,
-      role_id: 2,
+      role_id: 3,
       createdAt: new Date(),
       updatedAt: new Date()
     },

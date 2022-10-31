@@ -21,7 +21,11 @@ module.exports = {
         type: Sequelize.STRING
       },
       street_id: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: {
+          model: "Streets",
+          key: "id"
+        }
       },
       ward_id: {
         type: Sequelize.INTEGER

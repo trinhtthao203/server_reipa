@@ -15,10 +15,18 @@ module.exports = {
         type: Sequelize.STRING
       },
       province_id: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: {
+          model: "Provinces",
+          key: "id"
+        }
       },
       district_id: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: {
+          model: "Districts",
+          key: "id"
+        }
       },
       createdAt: {
         allowNull: true,
