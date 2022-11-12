@@ -3,8 +3,9 @@ module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.bulkInsert('Users', [{
       phonenumber: "0986405456",
-      password: "'$2a$10$qpNKUWtlDp7EMWXm/FGz5OFmClLWGmwCIDBm.PSSfcbI6MaRM.YMe'",
+      password: "$2a$10$90d9IsOKREre.4/0ZnonUOjKqQ/g/h.rl48EXK8SOHlu8xdmUN37m",
       fullname: "Admin System",
+      avatar: null,
       address: null,
       street_id: null,
       ward_id: null,
@@ -15,8 +16,9 @@ module.exports = {
     },
     {
       phonenumber: "0986405457",
-      password: "'$2a$10$qpNKUWtlDp7EMWXm/FGz5OFmClLWGmwCIDBm.PSSfcbI6MaRM.YMe'",
+      password: "$2a$10$90d9IsOKREre.4/0ZnonUOjKqQ/g/h.rl48EXK8SOHlu8xdmUN37m",
       fullname: "Employee System",
+      avatar: null,
       address: null,
       street_id: null,
       ward_id: null,
@@ -27,8 +29,9 @@ module.exports = {
     },
     {
       phonenumber: "0369369369",
-      password: "'$2a$10$qpNKUWtlDp7EMWXm/FGz5OFmClLWGmwCIDBm.PSSfcbI6MaRM.YMe'",
+      password: "$2a$10$90d9IsOKREre.4/0ZnonUOjKqQ/g/h.rl48EXK8SOHlu8xdmUN37m",
       fullname: "Trịnh Thị Thanh Trúc",
+      avatar: null,
       address: "1/1",
       street_id: null,
       ward_id: null,

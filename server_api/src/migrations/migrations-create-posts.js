@@ -6,19 +6,20 @@ module.exports = {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        force: true
       },
       title: {
         type: Sequelize.STRING
       },
       price: {
-        type: Sequelize.STRING
+        type: Sequelize.FLOAT
       },
       address: {
         type: Sequelize.STRING
       },
       area: {
-        type: Sequelize.STRING
+        type: Sequelize.FLOAT
       },
       juridical_id: {
         type: Sequelize.INTEGER,
@@ -49,7 +50,7 @@ module.exports = {
       status_id: {
         type: Sequelize.INTEGER
       },
-      introduction: {
+      description: {
         type: Sequelize.TEXT
       },
       user_id: {

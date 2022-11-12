@@ -5,7 +5,7 @@ const {
 module.exports = (sequelize, DataTypes) => {
   class Wards extends Model {
     static associate(models) {
-      Wards.hasMany(models.Planning_areas, { foreignKey: "ward_id" });
+      Wards.hasMany(models.Zonings, { foreignKey: "ward_id" });
       Wards.hasMany(models.Posts, { foreignKey: "ward_id" });
       Wards.belongsTo(models.Provinces, { foreignKey: "province_id" });
       Wards.belongsTo(models.Districts, { foreignKey: "district_id" });
@@ -14,7 +14,9 @@ module.exports = (sequelize, DataTypes) => {
   Wards.init({
     id: {
       type: DataTypes.INTEGER,
-      primaryKey: true
+      primaryKey: true,
+      allowNull: false,
+      autoIncrement: true,
     },
     name: DataTypes.STRING,
     type: DataTypes.STRING,

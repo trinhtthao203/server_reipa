@@ -6,15 +6,16 @@ module.exports = {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        force: true
       },
-      url: {
+      name: {
         type: Sequelize.STRING
       },
-      relation_id: {
+      zoning_id: {
         type: Sequelize.INTEGER
       },
-      typeof_image_id: {
+      post_id: {
         type: Sequelize.INTEGER
       },
       createdAt: {

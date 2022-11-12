@@ -171,13 +171,11 @@ const handleUserRegister = (userInfo) => {
                 phonenumber: userInfo.phonenumber,
                 password: hashPasswordFromBcrypt,
                 fullname: userInfo.fullname,
+                avatar: "",
                 address: userInfo.address,
                 street_id: userInfo.street_id,
                 ward_id: userInfo.ward_id,
-                avatar: "",
                 role_id: userInfo.role_id,
-                created_at: new Date(),
-                updated_at: new Date(),
             })
             resolve({
                 code: 200,

@@ -9,6 +9,7 @@ const sequelize = new Sequelize(process.env.DATABASE, process.env.USER_NAME, pro
     logging: false,
 });
 const { QueryTypes } = require('sequelize');
+
 const handleGetAllWard = () => {
     return new Promise(async (resolve, reject) => {
         try {
@@ -34,7 +35,7 @@ const handleGetAllWard = () => {
     })
 }
 
-const handleGetBorderWard = (id) => {
+const handleGetBorderWardByID = (id) => {
     return new Promise(async (resolve, reject) => {
         try {
             let wardData = await sequelize.query(
@@ -173,5 +174,5 @@ module.exports = {
     getHandleWardSignUp: getHandleWardSignUp,
     handleUpdateBorderID: handleUpdateBorderID,
     checkExistsWardID: checkExistsWardID,
-    handleGetBorderWard: handleGetBorderWard
+    handleGetBorderWardByID: handleGetBorderWardByID
 }

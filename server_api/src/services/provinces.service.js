@@ -39,7 +39,7 @@ const handleGetAllProvince = () => {
     })
 }
 
-const handleGetBorderProvince = (id) => {
+const handleGetBorderProvinceByID = (id) => {
     return new Promise(async (resolve, reject) => {
         try {
             let provincesData = await sequelize.query(
@@ -103,6 +103,6 @@ const handleUpdateBorderProvince = (id, geometry) => {
 
 module.exports = {
     handleGetAllProvince: handleGetAllProvince,
-    handleGetBorderProvince: handleGetBorderProvince,
+    handleGetBorderProvinceByID: handleGetBorderProvinceByID,
     handleUpdateBorderProvince: handleUpdateBorderProvince
 }

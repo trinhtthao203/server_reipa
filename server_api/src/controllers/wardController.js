@@ -14,7 +14,7 @@ const getAllWard = async (req, res) => {
     })
 }
 
-const getBorderWard = async (req, res) => {
+const getBorderWardByID = async (req, res) => {
     const { id } = req.body;
     if (!id) {
         return res.status(400).json({
@@ -24,7 +24,7 @@ const getBorderWard = async (req, res) => {
             }
         })
     }
-    let wardData = await wardService.handleGetBorderWard(id);
+    let wardData = await wardService.handleGetBorderWardByID(id);
 
     return res.status(200).json({
         code: wardData.code,
@@ -128,5 +128,5 @@ module.exports = {
     getWardSignUp: getWardSignUp,
     updateBorder: updateBorder,
     updateBorderID: updateBorderID,
-    getBorderWard: getBorderWard
+    getBorderWardByID: getBorderWardByID
 }

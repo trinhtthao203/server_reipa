@@ -14,7 +14,9 @@ module.exports = (sequelize, DataTypes) => {
   Streets.init({
     id: {
       type: DataTypes.INTEGER,
-      primaryKey: true
+      primaryKey: true,
+      allowNull: false,
+      autoIncrement: true,
     },
     name: DataTypes.STRING,
     prefix: DataTypes.STRING,

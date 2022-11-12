@@ -13,17 +13,19 @@ module.exports = (sequelize, DataTypes) => {
       Posts.belongsTo(models.Wards, { foreignKey: "ward_id" });
       Posts.belongsTo(models.Streets, { foreignKey: "street_id" });
       Posts.belongsTo(models.Users, { foreignKey: "user_id" });
-      Posts.hasMany(models.Images, { foreignKey: "relation_id" });
+      Posts.hasMany(models.Images, { foreignKey: "post_id" });
     }
   }
   Posts.init({
     id: {
       type: DataTypes.INTEGER,
-      primaryKey: true
+      primaryKey: true,
+      allowNull: false,
+      autoIncrement: true,
     },
     title: DataTypes.STRING,
-    price: DataTypes.STRING,
-    area: DataTypes.STRING,
+    price: DataTypes.FLOAT,
+    area: DataTypes.FLOAT,
     address: DataTypes.STRING,
     structure: DataTypes.INTEGER,
     bedroom: DataTypes.INTEGER,
@@ -36,7 +38,7 @@ module.exports = (sequelize, DataTypes) => {
     ward_id: DataTypes.INTEGER,
     typeof_real_estate_id: DataTypes.INTEGER,
     typeof_posts_id: DataTypes.INTEGER,
-    introduction: DataTypes.TEXT,
+    description: DataTypes.TEXT,
     status_id: DataTypes.INTEGER,
     createdAt: DataTypes.DATE,
     updatedAt: DataTypes.DATE

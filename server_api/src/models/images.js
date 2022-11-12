@@ -5,21 +5,20 @@ const {
 module.exports = (sequelize, DataTypes) => {
   class Images extends Model {
     static associate(models) {
-      Images.belongsTo(models.Planning_areas, { foreignKey: "relation_id" });
-      Images.belongsTo(models.Users, { foreignKey: "relation_id" });
-      Images.belongsTo(models.Posts, { foreignKey: "relation_id" });
-      Images.belongsTo(models.Investors, { foreignKey: "relation_id" });
-      Images.belongsTo(models.Typeof_images, { foreignKey: "typeof_image_id" })
+      Images.belongsTo(models.Zonings, { foreignKey: "zoning_id" });
+      Images.belongsTo(models.Posts, { foreignKey: "post_id" })
     }
   }
   Images.init({
     id: {
       type: DataTypes.INTEGER,
-      primaryKey: true
+      primaryKey: true,
+      allowNull: false,
+      autoIncrement: true,
     },
-    url: DataTypes.STRING,
-    relation_id: DataTypes.INTEGER,
-    type: DataTypes.INTEGER,
+    name: DataTypes.STRING,
+    zoning_id: DataTypes.INTEGER,
+    post_id: DataTypes.INTEGER,
     createdAt: DataTypes.DATE,
     updatedAt: DataTypes.DATE
   }, {

@@ -33,7 +33,27 @@ const getDistrictByProvince = async (req, res) => {
     })
 }
 
+const getBorderDistrictByID = async (req, res) => {
+    const { id } = req.body;
+    if (!id) {
+        return res.status(400).json({
+            code: 400,
+            data: {
+                message: Strings.Districts.REQUEST_DISTRICT_ID
+            }
+        })
+    }
+
+    let districtData = await districtService.getHandleGetBorderDistrictByID(id);
+
+    return res.status(200).json({
+        code: districtData.code,
+        data: districtData.data ? districtData.data : {}
+    })
+}
+
 module.exports = {
     getAllDistrict: getAllDistrict,
-    getDistrictByProvince: getDistrictByProvince
+    getDistrictByProvince: getDistrictByProvince,
+    getBorderDistrictByID: getBorderDistrictByID
 }

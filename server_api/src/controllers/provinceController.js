@@ -14,24 +14,6 @@ const getAllProvince = async (req, res) => {
     })
 }
 
-const getBorderProvince = async (req, res) => {
-    const { id } = req.body;
-    console.log(id);
-    if (!id) {
-        return res.status(400).json({
-            code: 400,
-            data: {
-                message: Strings.Address.REQUEST_PROVINCE_ID,
-            }
-        })
-    }
-    let provinceData = await provinceService.handleGetBorderProvince(id);
-    return res.status(200).json({
-        code: provinceData.code,
-        data: provinceData.data ? provinceData.data : {}
-    })
-}
-
 const updateBorderProvince = async (req, res) => {
     const { id, geometry } = req.body;
     let provinceData = await provinceService.handleUpdateBorderProvince(id, geometry);
@@ -42,8 +24,26 @@ const updateBorderProvince = async (req, res) => {
     })
 }
 
+const getBorderProvinceByID = async (req, res) => {
+    const { id } = req.body;
+    if (!id) {
+        return res.status(400).json({
+            code: 400,
+            data: {
+                message: Strings.Provinces.REQUEST_PROVINCE_ID,
+            }
+        })
+    }
+    let provinceData = await provinceService.handleGetBorderProvinceByID(id);
+
+    return res.status(200).json({
+        code: provinceData.code,
+        data: provinceData.data ? provinceData.data : {}
+    })
+}
+
 module.exports = {
     getAllProvince: getAllProvince,
-    getBorderProvince: getBorderProvince,
-    updateBorderProvince: updateBorderProvince
+    updateBorderProvince: updateBorderProvince,
+    getBorderProvinceByID: getBorderProvinceByID,
 }

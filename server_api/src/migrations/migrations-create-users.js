@@ -6,7 +6,8 @@ module.exports = {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        force: true
       },
       phonenumber: {
         type: Sequelize.STRING
@@ -15,6 +16,9 @@ module.exports = {
         type: Sequelize.STRING
       },
       fullname: {
+        type: Sequelize.STRING
+      },
+      avatar: {
         type: Sequelize.STRING
       },
       address: {

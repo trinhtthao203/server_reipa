@@ -11,7 +11,9 @@ module.exports = (sequelize, DataTypes) => {
   Juridicals.init({
     id: {
       type: DataTypes.INTEGER,
-      primaryKey: true
+      primaryKey: true,
+      allowNull: false,
+      autoIncrement: true,
     },
     name: DataTypes.STRING,
     createdAt: DataTypes.DATE,

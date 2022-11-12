@@ -8,12 +8,15 @@ module.exports = (sequelize, DataTypes) => {
       Districts.belongsTo(models.Provinces, { foreignKey: "province_id" });
       Districts.hasMany(models.Wards, { foreignKey: "district_id" });
       Districts.hasMany(models.Streets, { foreignKey: "district_id" });
+      Districts.hasMany(models.Zonings, { foreignKey: "district_id" });
     }
   }
   Districts.init({
     id: {
       type: DataTypes.INTEGER,
-      primaryKey: true
+      primaryKey: true,
+      allowNull: false,
+      autoIncrement: true,
     },
     name: DataTypes.STRING,
     type: DataTypes.STRING,
