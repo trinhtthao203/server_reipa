@@ -20,7 +20,7 @@ const getDistrictByProvince = async (req, res) => {
         return res.status(400).json({
             code: 400,
             data: {
-                message: Strings.Address.REQUEST_PROVINCE_ID
+                message: Strings.Provinces.REQUEST_PROVINCE_ID
             }
         })
     }

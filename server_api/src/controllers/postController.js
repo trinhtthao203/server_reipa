@@ -31,7 +31,8 @@ const addPost = async (req, res) => {
     image_upload(req, res, function (err) {
         const post = req.body;
         const dataImage = req.files;
-        if (!post.title || !post.price || !post.address || !post.coordinates || !post.typeof_posts_id || !post.typeof_real_estate_id || !post.user_id || !post.status_id || !post.ward_id) {
+        console.log(req.body)
+        if (!post.title || !post.price || !post.address || !post.typeof_posts_id || !post.typeof_real_estate_id || !post.user_id || !post.status_id || !post.province_id) {
             return res.status(401).json({
                 code: 401,
                 data: {
@@ -90,7 +91,7 @@ const getPostByDistanceLatLng = async (req, res) => {
         return res.status(400).json({
             code: 400,
             data: {
-                message: Strings.Zoning.REQUEST_STATUSID_MESSAGE,
+                message: Strings.Post.REQUEST_STATUSID_MESSAGE,
             }
         })
     }
@@ -110,7 +111,124 @@ const getPostByDistanceLatLng = async (req, res) => {
         data: postData.data ? postData.data : {}
     })
 }
+
+const getGeoJSONPost = async (req, res) => {
+    const { status_id } = req.body;
+    if (!status_id) {
+        return res.status(400).json({
+            code: 400,
+            data: {
+                message: Strings.Zoning.REQUEST_STATUSID_MESSAGE,
+            }
+        })
+    }
+    let postData = await postService.handleGetGeoJSONPost(status_id);
+    return res.status(200).json({
+        code: postData.code,
+        data: postData.data ? postData.data : {}
+    })
+}
+
+
+const getAddressByLatLng = async (req, res) => {
+    const { lat, lng } = req.body;
+    if (!lat || !lng) {
+        return res.status(400).json({
+            code: 400,
+            data: {
+                message: Strings.Zoning.REQUEST_LATLNG_MESSAGE,
+            }
+        })
+    }
+    let postData = await postService.handleGetAddressByLatLng(`POINT(${lat} ${lng})`);
+    return res.status(200).json({
+        code: postData.code,
+        data: postData.data,
+    })
+}
+
+const getTypeofPost = async (req, res) => {
+    let postData = await postService.handleGetTypeofPost();
+    return res.status(200).json({
+        code: postData.code,
+        data: postData.data,
+    })
+}
+
+const getTypeofRealEstate = async (req, res) => {
+    let postData = await postService.handleGetTypeofRealEstate();
+    return res.status(200).json({
+        code: postData.code,
+        data: postData.data,
+    })
+}
+
+const getJuridical = async (req, res) => {
+    let postData = await postService.handleGetJuridical();
+    return res.status(200).json({
+        code: postData.code,
+        data: postData.data,
+    })
+}
+const getFurniture = async (req, res) => {
+    let postData = await postService.handleGetFurniture();
+    return res.status(200).json({
+        code: postData.code,
+        data: postData.data,
+    })
+}
+const getAll = async (req, res) => {
+    let postData = await postService.handleGetAll();
+    return res.status(200).json({
+        code: postData.code,
+        data: postData.data,
+    })
+}
+
+const getByID = async (req, res) => {
+    const { post_id } = req.body;
+    if (!post_id) {
+        return res.status(400).json({
+            code: 400,
+            data: {
+                message: Strings.POST.REQUEST_ID_MESSAGE,
+            }
+        })
+    }
+    let postData = await postService.handleGetPostByID(post_id);
+    return res.status(200).json({
+        code: postData.code,
+        data: postData.data ? postData.data : {}
+    })
+}
+
+const getByUserID = async (req, res) => {
+    const { user_id } = req.body;
+    if (!user_id) {
+        return res.status(400).json({
+            code: 400,
+            data: {
+                message: Strings.POST.REQUEST_ID_MESSAGE,
+            }
+        })
+    }
+    let postData = await postService.handleGetPostByUserID(user_id);
+    return res.status(200).json({
+        code: postData.code,
+        data: postData.data ? postData.data : {}
+    })
+}
+
 module.exports = {
     addPost: addPost,
     getPostByDistanceLatLng: getPostByDistanceLatLng,
+    getGeoJSONPost: getGeoJSONPost,
+    getAddressByLatLng: getAddressByLatLng,
+    getTypeofPost: getTypeofPost,
+    getTypeofRealEstate: getTypeofRealEstate,
+    getJuridical: getJuridical,
+    getFurniture: getFurniture,
+    getAll: getAll,
+    getByID: getByID,
+    getByUserID: getByUserID
 }

@@ -18,9 +18,6 @@ module.exports = {
       geometry: {
         type: Sequelize.GEOMETRY
       },
-      nation_id: {
-        type: Sequelize.INTEGER
-      },
       createdAt: {
         allowNull: true,
         type: Sequelize.DATE

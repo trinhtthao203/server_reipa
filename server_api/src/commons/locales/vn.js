@@ -68,7 +68,10 @@ export default {
         REQUEST_STATUSID_MESSAGE: "Vui lòng nhập mã trạng thái",
         REQUEST_POLYGONID_MESSAGE: "Vui lòng nhập mã vùng",
         REQUEST_POLYLINEID_MESSAGE: "Vui lòng nhập mã đường",
-        REQUEST_LATLNG_MESSAGE: "Vui lòng nhập tọa độ vùng",
+        REQUEST_LATLNG_MESSAGE: "Vui lòng nhập tọa độ",
+        REQUEST_ID_MESSAGE: "Vui lòng nhập mã quy hoạch",
+        REQUEST_USER_ID_MESSAGE: "Vui lòng nhập mã người dùng",
+        DELETE_SUCCESS: "Xóa thành công"
     },
 
     Image: {
@@ -90,6 +93,8 @@ export default {
 
     POST: {
         ADD_POST_SUCCESS: "Thêm bài đăng thành công",
-        REQUIRE_LATLNG_DISTANCE_MESSAGE: "Vui lòng nhập latlng và khoảng cách"
+        REQUEST_ID_MESSAGE: "Vui lòng nhập mã bài đăng",
+        NOT_EXIST_ID_MESSAGE: "Mã bài đăng không tồn tại",
+        REQUIRE_LATLNG_DISTANCE_MESSAGE: "Vui lòng nhập latlng và khoảng cách",
     }
 }

@@ -9,6 +9,7 @@ module.exports = (sequelize, DataTypes) => {
       Districts.hasMany(models.Wards, { foreignKey: "district_id" });
       Districts.hasMany(models.Streets, { foreignKey: "district_id" });
       Districts.hasMany(models.Zonings, { foreignKey: "district_id" });
+      Districts.hasMany(models.Posts, { foreignKey: "district_id" });
     }
   }
   Districts.init({

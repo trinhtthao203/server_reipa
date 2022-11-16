@@ -4,7 +4,6 @@ import Strings from "../constants/strings";
 import dotenv from "dotenv";
 dotenv.config();
 
-//get all
 const getAllImageByZoningID = async (req, res) => {
     const { zoning_id } = req.body;
     if (!zoning_id) {
@@ -16,6 +15,23 @@ const getAllImageByZoningID = async (req, res) => {
         })
     }
     let imageData = await imageService.handleGetAllImagesByZoningID(zoning_id);
+
+    return res.status(200).json({
+        code: imageData.code,
+        data: imageData.data ? imageData.data : {}
+    })
+}
+const getAllImageByPostID = async (req, res) => {
+    const { post_id } = req.body;
+    if (!post_id) {
+        return res.status(400).json({
+            code: 400,
+            data: {
+                message: Strings.POST.REQUEST_ID_MESSAGE
+            }
+        })
+    }
+    let imageData = await imageService.handleGetAllImagesByPostID(post_id);
 
     return res.status(200).json({
         code: imageData.code,
@@ -60,6 +76,7 @@ const getOneImageByPostID = async (req, res) => {
 }
 module.exports = {
     getAllImageByZoningID: getAllImageByZoningID,
+    getAllImageByPostID: getAllImageByPostID,
     getOneImageByZoningID: getOneImageByZoningID,
     getOneImageByPostID: getOneImageByPostID,
 }

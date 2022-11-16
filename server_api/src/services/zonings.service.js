@@ -208,7 +208,7 @@ const handleGetZoningPolygonID = (status_id, id) => {
                 FROM public."Zonings" AS z 
                 LEFT JOIN public."Provinces" AS p ON z.province_id=p.id 
                 LEFT JOIN public."Districts" AS d ON z.district_id=d.id
-                LEFT JOIN public."Wards" AS w ON z.district_id=w.id
+                LEFT JOIN public."Wards" AS w ON z.ward_id=w.id
                 LEFt JOIN public."Users" AS u ON z.user_id = u.id
                 WHERE z.ispolygon=true AND z.status_id=? AND z.id=?
                 `,
@@ -273,6 +273,113 @@ const handleGetZoningPolylineDistance = (status_id, lat, lng) => {
     })
 }
 
+const handleGetZoningByID = (zoning_id) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            let zoningData = await sequelize.query(
+                `
+                SELECT zon.*, p.name as province_name, d.name as district_name, w.name as ward_name,
+                u.fullname as user_name, u.phonenumber, u.avatar
+                FROM public."Zonings" AS zon
+                LEFT JOIN public."Provinces" AS p ON zon.province_id=p.id 
+                LEFT JOIN public."Districts" AS d ON zon.district_id=d.id
+                LEFT JOIN public."Wards" AS w ON zon.ward_id=w.id
+                LEFT JOIN public."Users" AS u ON zon.user_id = u.id 
+                WHERE zon.id=?
+                `,
+                {
+                    replacements: [zoning_id],
+                    type: QueryTypes.SELECT
+                }
+            );
+            if (zoningData) {
+                resolve({
+                    code: 200,
+                    data: zoningData
+                });
+            } else {
+                resolve({
+                    code: 400,
+                    data: {
+                        message: Strings.Message.COMMON_ERROR
+                    }
+                });
+            }
+        } catch (err) {
+            reject(err);
+        }
+    })
+}
+
+const handleGetZoningByUserID = (user_id) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            let zoningData = await sequelize.query(
+                `
+                SELECT z.*,p.name AS province_name ,d.name as district_name, w.name as ward_name, typ_z.name as type_name, sta.name as status_name
+                FROM public."Zonings" AS z 
+                LEFT JOIN public."Provinces" AS p ON z.province_id=p.id 
+                LEFT JOIN public."Districts" AS d ON z.district_id=d.id
+                LEFT JOIN public."Wards" AS w ON z.ward_id=w.id
+                LEFT JOIN public."Status" AS sta ON z.status_id=sta.id
+                LEFT JOIN public."Typeof_zonings" AS typ_z ON z.typeof_zoning_id = typ_z.id
+                WHERE z.user_id=? 
+                `,
+                {
+                    replacements: [user_id],
+                    type: QueryTypes.SELECT
+                }
+            );
+            if (zoningData) {
+                resolve({
+                    code: 200,
+                    data: zoningData
+                });
+            } else {
+                resolve({
+                    code: 400,
+                    data: {
+                        message: Strings.Message.COMMON_ERROR
+                    }
+                });
+            }
+        } catch (err) {
+            reject(err);
+        }
+    })
+}
+
+
+const handleDeleteZoning = (zoning_id) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            let postData = await sequelize.query(
+                `
+                DELETE FROM public."Images" WHERE zoning_id=(?);
+                DELETE FROM public."Zonings" WHERE id=(?);
+                `,
+                {
+                    replacements: [zoning_id, zoning_id],
+                    type: QueryTypes.DELETE
+                }
+            );
+            if (postData) {
+                resolve({
+                    code: 200,
+                    data: { message: Strings.Zoning.DELETE_SUCCESS }
+                });
+            } else {
+                resolve({
+                    code: 400,
+                    data: { message: Strings.POST.NOT_EXIST_ID_MESSAGE }
+                });
+            }
+        } catch (err) {
+            reject(err);
+        }
+    })
+}
+
 module.exports = {
     handleGetAllZoning: handleGetAllZoning,
     handleAddZoning: handleAddZoning,
@@ -280,5 +387,8 @@ module.exports = {
     handleGetGeoJSONZoningPolygon: handleGetGeoJSONZoningPolygon,
     handleGetGeoJSONZoningPolyline: handleGetGeoJSONZoningPolyline,
     handleGetZoningPolygonID: handleGetZoningPolygonID,
-    handleGetZoningPolylineDistance: handleGetZoningPolylineDistance
+    handleGetZoningPolylineDistance: handleGetZoningPolylineDistance,
+    handleGetZoningByID: handleGetZoningByID,
+    handleGetZoningByUserID: handleGetZoningByUserID,
+    handleDeleteZoning: handleDeleteZoning
 }

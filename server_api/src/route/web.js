@@ -107,7 +107,10 @@ const initWebRoutes = (app) => {
 
     //zoning
     router.get("/api/zoning/get_all_zonings", zoningController.getAllZoning)
+    router.post("/api/zoning/get_by_id", zoningController.getByID)
+    router.post("/api/zoning/get_by_user_id", zoningController.getByUserID)
     router.post("/api/zoning/add_zonings", zoningController.addZoning);
+    router.post("/api/zoning/delete_zonings", zoningController.deleteZoning);
     router.post("/api/zoning/geojson_zonings", zoningController.getGeoJSONZoning)
     router.post("/api/zoning/geojson_zonings_polygon", zoningController.getGeoJSONZoningPolygon)
     router.post("/api/zoning/geojson_zonings_polyline", zoningController.getGeoJSONZoningPolyline)
@@ -119,12 +122,23 @@ const initWebRoutes = (app) => {
 
     //images
     router.post("/api/images/get_all_by_zoning_id", imagesController.getAllImageByZoningID)
+    router.post("/api/images/get_all_by_post_id", imagesController.getAllImageByPostID)
     router.post("/api/images/get_one_by_zoning_id", imagesController.getOneImageByZoningID)
     router.post("/api/images/get_one_by_post_id", imagesController.getOneImageByPostID)
 
     //posts
     router.post("/api/post/add_post", postController.addPost);
+    router.get("/api/post/get_all", postController.getAll);
+    router.post("/api/post/get_by_id", postController.getByID);
+    router.post("/api/post/get_by_user_id", postController.getByUserID);
+    router.post("/api/post/geojson_post", postController.getGeoJSONPost);
     router.post("/api/post/post_by_distance_latlng", postController.getPostByDistanceLatLng);
+    router.get("/api/post/type_of_post", postController.getTypeofPost);
+    router.get("/api/post/type_of_real_estate", postController.getTypeofRealEstate);
+    router.get("/api/post/juridical", postController.getJuridical);
+    router.get("/api/post/furniture", postController.getFurniture);
+    //get province_id, district_id, ward_id by lat,lng
+    router.post("/api/get_address_by_latlng", postController.getAddressByLatLng);
 
 
     //rest api

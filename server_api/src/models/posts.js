@@ -10,6 +10,8 @@ module.exports = (sequelize, DataTypes) => {
       Posts.belongsTo(models.Status, { foreignKey: "status_id" });
       Posts.belongsTo(models.Typeof_posts, { foreignKey: "typeof_posts_id" });
       Posts.belongsTo(models.Typeof_real_estates, { foreignKey: "typeof_real_estate_id" });
+      Posts.belongsTo(models.Provinces, { foreignKey: "province_id" });
+      Posts.belongsTo(models.Districts, { foreignKey: "district_id" });
       Posts.belongsTo(models.Wards, { foreignKey: "ward_id" });
       Posts.belongsTo(models.Streets, { foreignKey: "street_id" });
       Posts.belongsTo(models.Users, { foreignKey: "user_id" });
@@ -34,8 +36,10 @@ module.exports = (sequelize, DataTypes) => {
     user_id: DataTypes.INTEGER,
     furniture_id: DataTypes.INTEGER,
     juridical_id: DataTypes.INTEGER,
-    street_id: DataTypes.INTEGER,
+    province_id: DataTypes.INTEGER,
+    district_id: DataTypes.INTEGER,
     ward_id: DataTypes.INTEGER,
+    street_id: DataTypes.INTEGER,
     typeof_real_estate_id: DataTypes.INTEGER,
     typeof_posts_id: DataTypes.INTEGER,
     description: DataTypes.TEXT,

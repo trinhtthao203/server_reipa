@@ -62,6 +62,12 @@ module.exports = {
       ward_id: {
         type: Sequelize.INTEGER
       },
+      province_id: {
+        type: Sequelize.INTEGER
+      },
+      district_id: {
+        type: Sequelize.INTEGER
+      },
       typeof_real_estate_id: {
         type: Sequelize.INTEGER
       },

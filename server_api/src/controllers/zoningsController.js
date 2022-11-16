@@ -200,6 +200,57 @@ const addZoning = async (req, res) => {
     })
 }
 
+const getByID = async (req, res) => {
+    const { zoning_id } = req.body;
+    if (!zoning_id) {
+        return res.status(400).json({
+            code: 400,
+            data: {
+                message: Strings.Zoning.REQUEST_ID_MESSAGE,
+            }
+        })
+    }
+    let zoningData = await zoningService.handleGetZoningByID(zoning_id);
+    return res.status(200).json({
+        code: zoningData.code,
+        data: zoningData.data ? zoningData.data : {}
+    })
+}
+
+
+const getByUserID = async (req, res) => {
+    const { user_id } = req.body;
+    if (!user_id) {
+        return res.status(400).json({
+            code: 400,
+            data: {
+                message: Strings.Zoning.REQUEST_USER_ID_MESSAGE,
+            }
+        })
+    }
+    let zoningData = await zoningService.handleGetZoningByUserID(user_id);
+    return res.status(200).json({
+        code: zoningData.code,
+        data: zoningData.data ? zoningData.data : {}
+    })
+}
+
+const deleteZoning = async (req, res) => {
+    const { zoning_id } = req.body;
+    if (!zoning_id) {
+        return res.status(400).json({
+            code: 400,
+            data: {
+                message: Strings.Zoning.REQUEST_ID_MESSAGE,
+            }
+        })
+    }
+    let zoningData = await zoningService.handleDeleteZoning(zoning_id);
+    return res.status(200).json({
+        code: zoningData.code,
+        data: zoningData.data ? zoningData.data : {}
+    })
+}
 
 module.exports = {
     getAllZoning: getAllZoning,
@@ -208,5 +259,8 @@ module.exports = {
     getGeoJSONZoningPolygon: getGeoJSONZoningPolygon,
     getGeoJSONZoningPolyline: getGeoJSONZoningPolyline,
     getZoningPolygonID: getZoningPolygonID,
-    getZoningPolylineDistance: getZoningPolylineDistance
+    getZoningPolylineDistance: getZoningPolylineDistance,
+    getByID: getByID,
+    getByUserID: getByUserID,
+    deleteZoning: deleteZoning
 }

@@ -39,6 +39,35 @@ const handleGetAllImagesByZoningID = (zoning_id) => {
     })
 }
 
+const handleGetAllImagesByPostID = (post_id) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            let imageData = await sequelize.query(`
+                SELECT name FROM public."Images"
+                WHERE post_id=?
+            `, {
+                replacements: [post_id],
+                type: QueryTypes.SELECT
+            });
+            if (imageData) {
+                resolve({
+                    code: 200,
+                    data: imageData
+                });
+            } else {
+                resolve({
+                    code: 400,
+                    data: {
+                        message: Strings.Message.NOT_FOUND_MESSAGE
+                    }
+                });
+            }
+        } catch (err) {
+            reject(err);
+        }
+    })
+}
+
 const handleGetOneImageByZoningID = (zoning_id) => {
     return new Promise(async (resolve, reject) => {
         try {
@@ -103,6 +132,7 @@ const handleGetOneImageByPostID = (zoning_id) => {
 
 module.exports = {
     handleGetAllImagesByZoningID: handleGetAllImagesByZoningID,
+    handleGetAllImagesByPostID: handleGetAllImagesByPostID,
     handleGetOneImageByZoningID: handleGetOneImageByZoningID,
     handleGetOneImageByPostID: handleGetOneImageByPostID
 }

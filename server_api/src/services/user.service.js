@@ -8,6 +8,13 @@ import Constants from "../constants";
 const { Op } = require("sequelize");
 dotenv.config();
 
+const { Sequelize } = require('sequelize');
+const sequelize = new Sequelize(process.env.DATABASE, process.env.USER_NAME, process.env.PASS_WORD, {
+    host: process.env.HOST,
+    dialect: process.env.DIALECT,
+    logging: false,
+});
+const { QueryTypes } = require('sequelize');
 //get all
 
 const handleGetAllUser = (page, size) => {
@@ -95,11 +102,20 @@ const handleUserLogOut = () => {
 const handleUserLogIn = (phonenumber, password) => {
     return new Promise(async (resolve, reject) => {
         try {
-            let userInfo = await db.Users.findOne({
-                where: { phonenumber: phonenumber },
-            })
-            if (userInfo) {
-                let check = await bcrypt.compareSync(password, userInfo.password);
+            let userInfo = await sequelize.query(
+                `
+                SELECT u.*, war.ward_name, war.district_name, war.province_name
+                FROM public."Users" AS u 
+                LEFT JOIN (SELECT w.id as id, w.name as ward_name, d.name as district_name, p.name as province_name FROM public."Wards" as w, public."Provinces" as p, public."Districts" AS d WHERE w.province_id = p.id AND w.district_id=d.id)AS war ON u.ward_id=war.id
+                WHERE u.phonenumber=?
+                `,
+                {
+                    replacements: [phonenumber],
+                    type: QueryTypes.SELECT
+                }
+            );
+            if (userInfo.length > 0) {
+                let check = await bcrypt.compareSync(password, userInfo[0].password);
                 if (check) {
                     const accessToken = jwt.sign({ id: userInfo.id, role_id: userInfo.role_id }, process.env.ACCESS_TOKEN_SECRET, { expiresIn: Constants.Api.EXPIRES_IN });
                     const refeshToken = jwt.sign({ id: userInfo.id, role_id: userInfo.role_id }, process.env.REFRESH_TOKEN_SECRET);
@@ -107,10 +123,7 @@ const handleUserLogIn = (phonenumber, password) => {
                         code: 200,
                         data: {
                             message: Strings.User.SUCCESS_LOGIN_MESSAGE,
-                            id: userInfo.id,
-                            phonenumber: userInfo.phonenumber,
-                            fullname: userInfo.fullname,
-                            role_id: userInfo.role_id,
+                            userInfo: userInfo[0],
                             accessToken: accessToken,
                             refeshToken: refeshToken,
                         }

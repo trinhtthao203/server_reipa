@@ -63,21 +63,6 @@ module.exports = {
         type: Sequelize.DATE
       },
     })
-      //Province -> Nations
-      .then(
-        async () => {
-          await queryInterface
-            .addConstraint("Provinces", {
-              type: "FOREIGN KEY",
-              fields: ["nation_id"],
-              name: "FK_NAT_PRO",
-              references: {
-                table: "Nations",
-                field: "id"
-              }
-            })
-        }
-      )
       //District -> Province
       .then(
         async () => {
@@ -258,7 +243,37 @@ module.exports = {
             })
         }
       )
-      //Posts -> Type of real wards
+      //Posts -> Provices
+      .then(
+        async () => {
+          await queryInterface
+            .addConstraint("Posts", {
+              type: "FOREIGN KEY",
+              fields: ["province_id"],
+              name: "FK_POS_PRO",
+              references: {
+                table: "Provinces",
+                field: "id"
+              }
+            })
+        }
+      )
+      //Posts -> Districts
+      .then(
+        async () => {
+          await queryInterface
+            .addConstraint("Posts", {
+              type: "FOREIGN KEY",
+              fields: ["district_id"],
+              name: "FK_POS_DIS",
+              references: {
+                table: "Districts",
+                field: "id"
+              }
+            })
+        }
+      )
+      //Posts -> Wards
       .then(
         async () => {
           await queryInterface

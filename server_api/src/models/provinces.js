@@ -8,7 +8,7 @@ module.exports = (sequelize, DataTypes) => {
       Provinces.hasMany(models.Districts, { foreignKey: "province_id" });
       Provinces.hasMany(models.Streets, { foreignKey: "province_id" });
       Provinces.hasMany(models.Zonings, { foreignKey: "province_id" });
-      Provinces.belongsTo(models.Nations, { foreignKey: "nation_id" });
+      Provinces.hasMany(models.Posts, { foreignKey: "province_id" });
     }
   }
   Provinces.init({
@@ -21,7 +21,6 @@ module.exports = (sequelize, DataTypes) => {
     name: DataTypes.STRING,
     type: DataTypes.STRING,
     geometry: DataTypes.GEOMETRY,
-    nation_id: DataTypes.INTEGER,
     createdAt: DataTypes.DATE,
     updatedAt: DataTypes.DATE
   }, {
