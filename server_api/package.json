@@ -24,6 +24,9 @@
   },
   "homepage": "https://github.com/trinhtthao203/reipa_server#readme",
   "dependencies": {
+    "@types/react": "^18.0.25",
+    "@types/react-dom": "^18.0.9",
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "dayjs": "^1.11.5",
@@ -37,6 +40,9 @@
     "pg-hstore": "^2.3.4",
     "pino": "^8.6.1",
     "pino-pretty": "^9.1.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-localization": "^1.0.19",
     "sequelize": "^6.21.3",
     "swagger-jsdoc": "^6.2.5",
     "swagger-ui-express": "^4.5.0"

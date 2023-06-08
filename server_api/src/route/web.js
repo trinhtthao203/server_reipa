@@ -21,7 +21,6 @@ dotenv.config();
 const initWebRoutes = (app) => {
     const authenToken = async (req, res, next) => {
         const authorizationHeader = req.headers["authorization"];
-
         //"Beaer [token]"
         const token = authorizationHeader.split(" ")[1];
         if (!token)
@@ -33,7 +32,6 @@ const initWebRoutes = (app) => {
             })
 
         jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, data) => {
-            console.log(err, data);
             if (err) return res.status(403).json({
                 code: 403,
                 data: {

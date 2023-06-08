@@ -1,0 +1,6 @@
+{
+    "i18n-ally.localesPaths": [
+        "src/commons/locales",
+        "server_api/src/commons/locales"
+    ]
+}

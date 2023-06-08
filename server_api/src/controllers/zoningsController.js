@@ -26,8 +26,7 @@ const image_upload = multer({
             return cb(err);
         }
     },
-}).array("dataImage")
-
+}).array("dataImage");
 
 const getAllZoning = async (req, res) => {
     let zoningData = await zoningService.handleGetAllZoning();

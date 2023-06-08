@@ -3,7 +3,6 @@ import userService from "../services/user.service"
 import Strings from "../constants/strings";
 
 import dotenv from "dotenv";
-
 dotenv.config();
 
 //get all
@@ -42,7 +41,6 @@ const getUser = async (req, res) => {
 
 //handle
 const handleLogOut = async (req, res) => {
-
     let userData = await userService.handleUserLogOut();
     return res.status(200).json({
         code: userData.code,
@@ -62,7 +60,6 @@ const handleResetPasword = async (req, res) => {
     }
 
     let userData = await userService.handleResetPassword(phonenumber, password);
-
     return res.status(200).json({
         code: userData.code,
         data: userData.data,
@@ -87,7 +84,6 @@ const handleCheckPhoneNumber = async (req, res) => {
         data: userData.data,
     })
 }
-
 
 const handleRegister = async (req, res) => {
     const { phonenumber, password, fullname, address, ward_id, role_id } = req.body;
